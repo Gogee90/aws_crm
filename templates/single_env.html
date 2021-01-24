@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}Environments{% endblock %}
+
+{% block content %}
+  <div class="envs">
+    {% for response in responses.Environments %}
+      <ul class="card grey lighten-4">
+      {% for key, value in response.items %}
+          <li><p><strong>{{ key }}</strong>: {{ value }}</p></li>
+      {% endfor %}
+          <i class="material-icons right-align"><a href="{% url 'terminate_env' response.EnvironmentId %}">highlight_off</a></i>
+          <i class="material-icons right-align"><a href="{% url 'restart_server' response.EnvironmentId %}">autorenew</a></i>
+       </ul>
+    {% endfor %}
+  </div>
+{% endblock %}

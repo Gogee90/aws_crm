@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}Environments{% endblock %}
+
+{% block content %}
+  <div class="envs">
+    <h1>Elastic Beanstalk environments</h1>
+    {% for response in responses.Environments %}
+      <ul class="card col s6 grey lighten-4">
+        <li><a href="{% url 'retrieve_single_env' response.EnvironmentId %}">Environment name: {{ response.EnvironmentName }}</a></li>
+        <li><p>Application name: {{ response.ApplicationName }}</p></li>
+        <li><p>Solution stack name name: {{ response.SolutionStackName }}</p></li>
+        <li><p>Status: {{ response.Status }}</p></li>
+        <li><p class="{{ response.Health }}">Health: {{ response.Health }}</p></li>
+          <i class="material-icons"><a href="{% url 'terminate_env' response.EnvironmentId %}">highlight_off</a></i>
+          <i class="material-icons"><a href="{% url 'restart_server' response.EnvironmentId %}">autorenew</a></i>
+       </ul>
+    {% endfor %}
+  </div>
+{% endblock %}

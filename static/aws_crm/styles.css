@@ -1,0 +1,15 @@
+.Green {
+    background-color: lightgreen;
+}
+
+.Grey {
+    background-color: gainsboro;
+}
+
+.Red {
+    background-color: red;
+}
+
+li {
+    list-style: none;
+}

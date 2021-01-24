@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+  <h1>Create environment</h1>
+  <form method="post" action="{% url 'create_environment' %}">
+      {% csrf_token %}
+      {{ form.as_ul }}
+      <li>
+        <label for="apps">Applications</label>
+          <select name="app_name" class="browser-default" id="apps">
+          {% for app in applications.Applications %}
+              <option value="{{ app.ApplicationName }}">{{ app.ApplicationName }}</option>
+          {% endfor %}
+        </select>
+      </li>
+      <li>
+        <label for="stacks">Available stacks</label>
+         <select name="solution_stack" class="browser-default" id="stacks">
+          {% for stack in stacks.SolutionStacks %}
+              <option value="{{ stack }}">{{ stack }}</option>
+          {% endfor %}
+        </select>
+      </li>
+      <button type="submit">Отправить</button>
+  </form>
+{% endblock %}
