@@ -10,6 +10,5 @@ urlpatterns = [
     path('restartenv/<str:id>', views.restart_server, name="restart_server"),
     path('terminateenv/<str:id>', views.terminate_env, name="terminate_env"),
     path('updateapp/', views.update_application, name='update_application'),
-    path('updateenv/', views.update_env, name='update_env'),
     path('', views.login_user, name='login')
 ]

@@ -14,6 +14,11 @@ class CreateAppForm(forms.Form):
     description = forms.CharField(max_length=100, label='Description')
 
 
+class UpdateAppForm(forms.Form):
+    app_name = forms.CharField(max_length=100, label='Application Name')
+    version_label = forms.CharField(max_length=30, label='Version label')
+
+
 class LoginForm(forms.ModelForm):
     username = forms.CharField(max_length=50)
     password = forms.CharField(max_length=100, widget=forms.PasswordInput())

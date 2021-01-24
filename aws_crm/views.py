@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import boto3
-from .forms import CreatEnvForm, CreateAppForm, LoginForm
+from .forms import CreatEnvForm, CreateAppForm, LoginForm, UpdateAppForm
 from django.contrib.auth import authenticate, login
 
 
@@ -41,14 +41,6 @@ def create_environment(request):
     )
 
 
-def update_env(request):
-    response = client.update_environment(
-        EnvironmentName='wordpress-test-env',
-        VersionLabel='v1.2',
-    )
-
-    print(response)
-
 
 def create_application(request):
     form = CreateAppForm(request.POST)
@@ -67,23 +59,27 @@ def create_application(request):
 
 
 def update_application(request):
+    form = UpdateAppForm(request.POST)
     response = client.create_application_version(
         ApplicationName='wp-test-app',
         AutoCreateApplication=True,
         Description='my-app-v1',
         Process=True,
         SourceBundle={
-            'S3Bucket': 'elasticbeanstalk-eu-central-1-225882122082',
-            'S3Key': 'Simple-django-based-CRM/wordpress.zip',
+            'S3Bucket': 'trashbin1',
+            'S3Key': 'wordpress.zip',
         },
-        VersionLabel='v1.3',
+        VersionLabel='v1.4',
     )
     client.update_environment(
         EnvironmentName='wordpress-test-env',
-        VersionLabel='v1.3',
+        VersionLabel='v1.4',
     )
-
-    print(response)
+    apllications = client.describe_applications()
+    return render(request, 'update_app.html', {
+        'applications': apllications,
+        'form': form
+    })
 
 
 def get_all_envs(request):
@@ -91,7 +87,7 @@ def get_all_envs(request):
     session = boto3.Session(profile_name='eb-cli')
     bucket = session.client('s3', 'eu-central-1')
     buckets_content = bucket.list_objects(
-        Bucket='elasticbeanstalk-eu-central-1-225882122082',
+        Bucket='trashbin1',
     )
 
     print(buckets_content)
