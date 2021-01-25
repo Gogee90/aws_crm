@@ -1,0 +1,22 @@
+branch-defaults:
+  aws_deploy:
+    environment: AwsControl-env
+  main:
+    environment: AwsControl-env
+    group_suffix: null
+  master:
+    environment: AwsControl-env
+global:
+  application_name: aws control
+  branch: null
+  default_ec2_keyname: aws-eb
+  default_platform: Python 3.7 running on 64bit Amazon Linux 2
+  default_region: eu-central-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: git
+  workspace_type: Application
