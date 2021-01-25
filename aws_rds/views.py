@@ -2,7 +2,11 @@ from django.shortcuts import render
 import boto3
 
 
-session = boto3.Session(profile_name='default')
+session = boto3.Session()
+credentials = session.get_credentials()
+credentials = credentials.get_frozen_credentials()
+access_key = credentials.access_key
+secret_key = credentials.secret_key
 client = session.client('rds', 'eu-central-1')
 # Create your views here.
 def get_db_instances(request):

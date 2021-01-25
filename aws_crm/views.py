@@ -55,7 +55,6 @@ def create_application(request):
             ApplicationName=app_name,
             Description=description,
         )
-        print(response)
         return redirect(to='create_environment')
     else:
         form = CreateAppForm()
@@ -93,8 +92,7 @@ def get_all_envs(request):
     buckets_content = bucket.list_objects(
         Bucket='trashbin1',
     )
-
-    print(buckets_content)
+    print(secret_key)
     context = {
       'responses': response
     }
