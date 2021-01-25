@@ -4,7 +4,11 @@ from .forms import CreatEnvForm, CreateAppForm, LoginForm, UpdateAppForm
 from django.contrib.auth import authenticate, login
 
 
-session = boto3.Session(profile_name='default')
+session = boto3.Session()
+credentials = session.get_credentials()
+credentials = credentials.get_frozen_credentials()
+access_key = credentials.access_key
+secret_key = credentials.secret_key
 client = session.client('elasticbeanstalk', 'eu-central-1')
 # Create your views here.
 def create_environment(request):
@@ -84,7 +88,7 @@ def update_application(request):
 
 def get_all_envs(request):
     response = client.describe_environments()
-    session = boto3.Session(profile_name='default')
+    #session = boto3.Session(profile_name='default')
     bucket = session.client('s3', 'eu-central-1')
     buckets_content = bucket.list_objects(
         Bucket='trashbin1',
