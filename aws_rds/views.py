@@ -2,7 +2,7 @@ from django.shortcuts import render
 import boto3
 
 
-session = boto3.Session(profile_name='eb-cli')
+session = boto3.Session(profile_name='default')
 client = session.client('rds', 'eu-central-1')
 # Create your views here.
 def get_db_instances(request):

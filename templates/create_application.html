@@ -2,10 +2,12 @@
 
 
 {% block content %}
-  <h1>Create application</h1>
-  <form action="{% url 'create_application' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_ul }}
-    <button type="submit">Отправить</button>
-  </form>
+  <div class="create_app card">
+    <h1 class="center">Create application</h1>
+    <form action="{% url 'create_application' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_ul }}
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
 {% endblock %}

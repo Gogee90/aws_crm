@@ -4,7 +4,7 @@ from .forms import CreatEnvForm, CreateAppForm, LoginForm, UpdateAppForm
 from django.contrib.auth import authenticate, login
 
 
-session = boto3.Session(profile_name='eb-cli')
+session = boto3.Session(profile_name='default')
 client = session.client('elasticbeanstalk', 'eu-central-1')
 # Create your views here.
 def create_environment(request):
@@ -84,7 +84,7 @@ def update_application(request):
 
 def get_all_envs(request):
     response = client.describe_environments()
-    session = boto3.Session(profile_name='eb-cli')
+    session = boto3.Session(profile_name='default')
     bucket = session.client('s3', 'eu-central-1')
     buckets_content = bucket.list_objects(
         Bucket='trashbin1',
@@ -119,20 +119,3 @@ def terminate_env(request, id):
         EnvironmentId=id,
     )
     return redirect(to='retrieve_single_env', id=id)
-
-
-def login_user(request):
-    form = LoginForm(request.POST)
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None and user.is_staff:
-            return redirect(to='get_all_envs')
-        if user is not None and not user.is_staff:
-            return redirect(to='get_all_envs')
-        else:
-            return redirect(to='login')
-    return render(request, "login.html", {
-        'form': form
-    })

@@ -5,8 +5,9 @@
 {% block content %}
   <div class="envs">
     <h1>Elastic Beanstalk environments</h1>
+    <a class="waves-effect waves-light btn" href="{% url 'create_application' %}">New env</a>
     {% for response in responses.Environments %}
-      <ul class="card col s6 grey lighten-4">
+      <ul class="card col s12 grey lighten-4">
         <li><a href="{% url 'retrieve_single_env' response.EnvironmentId %}">Environment name: {{ response.EnvironmentName }}</a></li>
         <li><p>Application name: {{ response.ApplicationName }}</p></li>
         <li><p>Solution stack name name: {{ response.SolutionStackName }}</p></li>

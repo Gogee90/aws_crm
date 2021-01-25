@@ -5,13 +5,17 @@
 {% block content %}
   <div class="envs">
     {% for response in responses.Environments %}
-      <ul class="card grey lighten-4">
+      <table class="card grey lighten-4 centered">
       {% for key, value in response.items %}
-          <li><p><strong>{{ key }}</strong>: {{ value }}</p></li>
+          <tr>
+            <td><strong>{{ key }}</strong></td>
+            <td>{{ value }}</td>
+          </tr>
+        </tbody>
       {% endfor %}
           <i class="material-icons right-align"><a href="{% url 'terminate_env' response.EnvironmentId %}">highlight_off</a></i>
           <i class="material-icons right-align"><a href="{% url 'restart_server' response.EnvironmentId %}">autorenew</a></i>
-       </ul>
+       </table>
     {% endfor %}
   </div>
 {% endblock %}
