@@ -26,7 +26,7 @@ SECRET_KEY = '(!jt7l2(tk-1)g!kc$#id!&xir9k8v@cjnqg-c1l%o6=8u4%&2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['awscontrol-env.eba-zwyicndp.eu-central-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['awscontrol-env.eba-zwyicndp.eu-central-1.elasticbeanstalk.com', '127.0.0.1']
 
 
 # Application definition

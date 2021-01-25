@@ -6,6 +6,10 @@ branch-defaults:
     group_suffix: null
   master:
     environment: AwsControl-env
+environment-defaults:
+  AwsControl-env:
+    branch: null
+    repository: null
 global:
   application_name: aws control
   branch: null
@@ -13,7 +17,7 @@ global:
   default_platform: Python 3.7 running on 64bit Amazon Linux 2
   default_region: eu-central-1
   include_git_submodules: true
-  instance_profile: null
+  instance_profile: default
   platform_name: null
   platform_version: null
   profile: default
