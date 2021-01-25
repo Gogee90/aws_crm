@@ -87,12 +87,6 @@ def update_application(request):
 
 def get_all_envs(request):
     response = client.describe_environments()
-    #session = boto3.Session(profile_name='default')
-    """bucket = session.client('s3', 'eu-central-1')
-    buckets_content = bucket.list_objects(
-        Bucket='trashbin1',
-    )
-    print(secret_key)"""
     context = {
       'responses': response
     }
